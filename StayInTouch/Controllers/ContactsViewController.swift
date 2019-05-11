@@ -19,10 +19,15 @@ class ContactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadContacts(filter: filter)
+        let contactViewController = ContactMethodViewController()
+        addChild(contactViewController)
+        view.addSubview(contactViewController.view)
+        contactViewController.view.frame = CGRect(x: 0, y: view.center.y, width: view.bounds.width, height: view.bounds.height / 2)
+        contactViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        contactViewController.didMove(toParent: self)
     }
     
     func phoneNumberWithContryCode() -> [String] {
-        
         let contacts = PhoneContacts.getContacts()
         var arrPhoneNumbers = [String]()
         for contact in contacts {

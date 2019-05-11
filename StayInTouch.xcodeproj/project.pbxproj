@@ -20,6 +20,9 @@
 		68A3344222865A7C008E9F1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3344122865A7C008E9F1D /* String.swift */; };
 		68A3344422865B24008E9F1D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3344322865B24008E9F1D /* StringExtensions.swift */; };
 		68A3344522865C2F008E9F1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3344122865A7C008E9F1D /* String.swift */; };
+		68A33448228667A1008E9F1D /* ContactMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A33447228667A1008E9F1D /* ContactMethodViewController.swift */; };
+		68A3344C22867612008E9F1D /* ContactMethodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3344B22867612008E9F1D /* ContactMethodButton.swift */; };
+		68A3344E22868255008E9F1D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3344D22868255008E9F1D /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		68A3343E228659E9008E9F1D /* ContactMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodView.swift; sourceTree = "<group>"; };
 		68A3344122865A7C008E9F1D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		68A3344322865B24008E9F1D /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		68A33447228667A1008E9F1D /* ContactMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodViewController.swift; sourceTree = "<group>"; };
+		68A3344B22867612008E9F1D /* ContactMethodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodButton.swift; sourceTree = "<group>"; };
+		68A3344D22868255008E9F1D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,7 @@
 		68A3340622864D37008E9F1D /* StayInTouch */ = {
 			isa = PBXGroup;
 			children = (
+				68A334462286678B008E9F1D /* Controllers */,
 				68A3344022865A5D008E9F1D /* Extensions */,
 				68A3343D228659D6008E9F1D /* Views */,
 				68A3343622864F26008E9F1D /* Managers */,
@@ -139,11 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				68A3340722864D37008E9F1D /* AppDelegate.swift */,
-				68A3340B22864D37008E9F1D /* Main.storyboard */,
-				68A3340922864D37008E9F1D /* ContactsViewController.swift */,
+				68A3341022864D37008E9F1D /* LaunchScreen.storyboard */,
 				68A3340E22864D37008E9F1D /* Assets.xcassets */,
 				68A3341322864D37008E9F1D /* Info.plist */,
-				68A3341022864D37008E9F1D /* LaunchScreen.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -160,7 +165,9 @@
 		68A3343D228659D6008E9F1D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				68A3340B22864D37008E9F1D /* Main.storyboard */,
 				68A3343E228659E9008E9F1D /* ContactMethodView.swift */,
+				68A3344B22867612008E9F1D /* ContactMethodButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,8 +176,18 @@
 			isa = PBXGroup;
 			children = (
 				68A3344122865A7C008E9F1D /* String.swift */,
+				68A3344D22868255008E9F1D /* UIColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		68A334462286678B008E9F1D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				68A3340922864D37008E9F1D /* ContactsViewController.swift */,
+				68A33447228667A1008E9F1D /* ContactMethodViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,9 +322,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				68A3344222865A7C008E9F1D /* String.swift in Sources */,
+				68A33448228667A1008E9F1D /* ContactMethodViewController.swift in Sources */,
 				68A3340A22864D37008E9F1D /* ContactsViewController.swift in Sources */,
 				68A3340822864D37008E9F1D /* AppDelegate.swift in Sources */,
+				68A3344E22868255008E9F1D /* UIColor.swift in Sources */,
 				68A3343822864FD5008E9F1D /* PhoneContact.swift in Sources */,
+				68A3344C22867612008E9F1D /* ContactMethodButton.swift in Sources */,
 				68A3343F228659E9008E9F1D /* ContactMethodView.swift in Sources */,
 				68A3343A22865009008E9F1D /* PhoneContacts.swift in Sources */,
 			);

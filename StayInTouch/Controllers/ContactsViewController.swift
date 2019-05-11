@@ -24,19 +24,39 @@ class ContactsViewController: UIViewController {
         
         addChild(contactViewController)
         contactViewController.view.isHidden = true
+        self.contactViewController.view.alpha = 0.0
         view.addSubview(contactViewController.view)
         contactViewController.view.frame = CGRect(x: 0, y: view.center.y, width: view.bounds.width, height: view.bounds.height / 2)
         contactViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contactViewController.didMove(toParent: self)
+        contactViewController.view.transform = CGAffineTransform(translationX: 0, y: view.frame.midY)
+        nameLabel.transform = CGAffineTransform(translationX: -1 * (view.frame.midX + (nameLabel.frame.width / 2)), y: 0)
     }
     
     @IBAction func letsGoButtonAction(_ sender: Any) {
-        contactViewController.view.isHidden = false
-        nameLabel.text = phoneContacts.randomElement()?.name
-        nameLabel.isHidden = false
+        showContactMethodView()
+        showLabel()
     }
     
-    fileprivate func loadContacts(filter: ContactsFilter) {
+    private func showLabel() {
+        let right = CGAffineTransform(translationX: 0, y: 0)
+        nameLabel.text = phoneContacts.randomElement()?.name
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.nameLabel.isHidden = false
+            self.nameLabel.transform = right
+        }, completion: nil)
+    }
+    
+    private func showContactMethodView() {
+        let up = CGAffineTransform(translationX: 0, y: 0)
+        UIView.animate(withDuration: 1.0, delay: 0.2, options: .curveEaseInOut, animations: {
+            self.contactViewController.view.isHidden = false
+            self.contactViewController.view.alpha = 1.0
+            self.contactViewController.view.transform = up
+        }, completion: nil)
+    }
+    
+    private func loadContacts(filter: ContactsFilter) {
         phoneContacts.removeAll()
         for contact in PhoneContacts.getContacts(filter: filter) {
             phoneContacts.append(PhoneContact(contact: contact))

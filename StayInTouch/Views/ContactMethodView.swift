@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ContactMethodViewDelegate: class {
-    func tapped()
+    func tapped(_ sender: ContactContext)
 }
 
 class ContactMethodView: UIView {
@@ -128,7 +128,19 @@ class ContactMethodView: UIView {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        delegate?.tapped()
+        switch sender.view {
+        case smsButton:
+            delegate?.tapped(.sms)
+        case callButton:
+            delegate?.tapped(.phone)
+        case facetimeButton:
+            delegate?.tapped(.facetime)
+        case mailButton:
+            delegate?.tapped(.email)
+        default:
+            print("no gesture recognizer")
+        }
+        
     }
     
     //custom views should override this to return true if

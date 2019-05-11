@@ -9,9 +9,26 @@
 import Foundation
 import UIKit
 
+enum ContactContext: String {
+    case phone = "tel://"
+    case facetime = "facetime://"
+    case sms = "sms:"
+    case email = "mailto:"
+}
+
 class ContactMethodViewController: UIViewController, ContactMethodViewDelegate {
-    func tapped() {
-        print("tapped")
+    
+    var activeContact: PhoneContact?
+    
+    func tapped(_ context: ContactContext) {
+        guard let activeContact = activeContact else { return }
+        if context == .email {
+            guard activeContact.email.count > 0 else { return }
+            contact(email: activeContact.email[0].prepend(context.rawValue))
+            return
+        }
+        guard activeContact.phoneNumber.count > 0 else { return }
+        contact(phoneNumber: activeContact.phoneNumber[0], context: context)
     }
     
     override func loadView() {
@@ -19,14 +36,8 @@ class ContactMethodViewController: UIViewController, ContactMethodViewDelegate {
         contactMethodView.delegate = self
         view = contactMethodView
     }
-    
-    enum ContactContext: String {
-        case phone = "tel://"
-        case facetime = "facetime://"
-        case sms = "sms:"
-    }
-    
-    func contact(phoneNumber: String, context: ContactContext) {
+
+    private func contact(phoneNumber: String, context: ContactContext) {
         guard phoneNumber.isValid(regex: .phone) == true else { return }
         let validNumber = phoneNumber.onlyDigits().prepend(context.rawValue)
         
@@ -37,10 +48,15 @@ class ContactMethodViewController: UIViewController, ContactMethodViewDelegate {
                 UIApplication.shared.openURL(url)
             }
         }
-        
-        //        let email = "foo@bar.com"
-        //        if let url = URL(string: "mailto:\(email)") {
-        //            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        //        }
+    }
+    
+    private func contact(email: String) {
+        if let url = URL(string: email), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 }

@@ -31,12 +31,33 @@ class ContactsViewController: UIViewController {
         contactViewController.didMove(toParent: self)
         contactViewController.view.transform = CGAffineTransform(translationX: 0, y: view.frame.midY)
         nameLabel.transform = CGAffineTransform(translationX: -1 * (view.frame.midX + (nameLabel.frame.width / 2)), y: 0)
+        
+        contactViewController.parentController = childSwipeHandler
     }
     
     @IBAction func letsGoButtonAction(_ sender: Any) {
         guard let randomContact = phoneContacts.randomElement() else { return }
         showContactMethodView(of: randomContact)
         showLabel(name: randomContact.name)
+    }
+    
+    private func childSwipeHandler(direction: UISwipeGestureRecognizer.Direction) {
+        let replacementContact = ContactMethodViewController()
+        
+        var directionTransform: CGAffineTransform = CGAffineTransform()
+        switch direction {
+        case .left:
+            directionTransform = CGAffineTransform(translationX: -view.frame.width, y: 0)
+        case .right:
+            directionTransform = CGAffineTransform(translationX: view.frame.width, y: 0)
+        default:
+            print("direction not handled")
+        }
+        
+        UIView.animate(withDuration: 0.7, delay: 0.1, options: .curveEaseInOut, animations: {
+            
+            replacementContact.view.transform = directionTransform
+        }, completion: nil)
     }
     
     private func showLabel(name: String?) {

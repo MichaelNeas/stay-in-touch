@@ -17,10 +17,14 @@ enum ContactContext: String {
 }
 
 class ContactMethodViewController: UIViewController, ContactMethodViewDelegate {
+    func viewSwiped(_ direction: UISwipeGestureRecognizer.Direction) {
+        parentController?(direction)
+    }
     
     var activeContact: PhoneContact?
+    var parentController: ((UISwipeGestureRecognizer.Direction)->())?
     
-    func tapped(_ context: ContactContext) {
+    func buttonTapped(_ context: ContactContext) {
         guard let activeContact = activeContact else { return }
         if context == .email {
             guard activeContact.email.count > 0 else { return }

@@ -9,7 +9,8 @@
 import UIKit
 
 protocol ContactMethodViewDelegate: class {
-    func tapped(_ sender: ContactContext)
+    func buttonTapped(_ sender: ContactContext)
+    func viewSwiped(_ direction: UISwipeGestureRecognizer.Direction)
 }
 
 class ContactMethodView: UIView {
@@ -69,8 +70,26 @@ class ContactMethodView: UIView {
         backgroundColor = .white
         addSubview(contentView)
         setupLayout()
-        setupTapHandlers()
+        setupGestureRecognizers()
         setupImages()
+    }
+    
+    @objc private func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        var direction: CGAffineTransform = CGAffineTransform()
+        switch gestureRecognizer.direction {
+        case .left:
+            direction = CGAffineTransform(translationX: -frame.width, y: 0)
+        case .right:
+            direction = CGAffineTransform(translationX: frame.width, y: 0)
+        default:
+            print("not implemented yet")
+        }
+        
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: .curveEaseInOut, animations: { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.viewSwiped(gestureRecognizer.direction)
+            strongSelf.transform = direction
+        }, completion: nil)
     }
     
     private func setupLayout() {
@@ -107,7 +126,14 @@ class ContactMethodView: UIView {
             ])
     }
     
-    private func setupTapHandlers() {
+    private func setupGestureRecognizers() {
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
+        swipeLeftGesture.direction = .left
+        addGestureRecognizer(swipeLeftGesture)
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
+        swipeRightGesture.direction = .right
+        addGestureRecognizer(swipeRightGesture)
+        
         [smsButton, callButton, facetimeButton, mailButton].forEach { button in
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             button.addGestureRecognizer(tap)
@@ -130,13 +156,13 @@ class ContactMethodView: UIView {
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         switch sender.view {
         case smsButton:
-            delegate?.tapped(.sms)
+            delegate?.buttonTapped(.sms)
         case callButton:
-            delegate?.tapped(.phone)
+            delegate?.buttonTapped(.phone)
         case facetimeButton:
-            delegate?.tapped(.facetime)
+            delegate?.buttonTapped(.facetime)
         case mailButton:
-            delegate?.tapped(.email)
+            delegate?.buttonTapped(.email)
         default:
             print("no gesture recognizer")
         }

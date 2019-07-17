@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		146B476D63AF75945C37A244 /* Pods_StayInTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3B0380C9C2584AAC10166A /* Pods_StayInTouch.framework */; };
+		2A82A426B02DEB96E48BCF49 /* Pods_StayInTouchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E80A64811A0DEC371D43D2 /* Pods_StayInTouchUITests.framework */; };
 		68A3340822864D37008E9F1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3340722864D37008E9F1D /* AppDelegate.swift */; };
 		68A3340A22864D37008E9F1D /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3340922864D37008E9F1D /* ContactsViewController.swift */; };
 		68A3340D22864D37008E9F1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68A3340B22864D37008E9F1D /* Main.storyboard */; };
@@ -23,6 +25,7 @@
 		68A33448228667A1008E9F1D /* ContactMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A33447228667A1008E9F1D /* ContactMethodViewController.swift */; };
 		68A3344C22867612008E9F1D /* ContactMethodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3344B22867612008E9F1D /* ContactMethodButton.swift */; };
 		68A3344E22868255008E9F1D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3344D22868255008E9F1D /* UIColor.swift */; };
+		B79FC7E63C00B8CEBA1C3BC9 /* Pods_StayInTouchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0046210C7F1DE5A5DFBBCD /* Pods_StayInTouchTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1AD8C0A9329E530F4B286A /* Pods-StayInTouchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayInTouchTests.release.xcconfig"; path = "Target Support Files/Pods-StayInTouchTests/Pods-StayInTouchTests.release.xcconfig"; sourceTree = "<group>"; };
+		29F1AF7AFA8BEC324382AC61 /* Pods-StayInTouchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayInTouchUITests.release.xcconfig"; path = "Target Support Files/Pods-StayInTouchUITests/Pods-StayInTouchUITests.release.xcconfig"; sourceTree = "<group>"; };
+		47C514417BEC8A636ED11916 /* Pods-StayInTouchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayInTouchUITests.debug.xcconfig"; path = "Target Support Files/Pods-StayInTouchUITests/Pods-StayInTouchUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		68A3340422864D37008E9F1D /* StayInTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayInTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68A3340722864D37008E9F1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68A3340922864D37008E9F1D /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +70,12 @@
 		68A33447228667A1008E9F1D /* ContactMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodViewController.swift; sourceTree = "<group>"; };
 		68A3344B22867612008E9F1D /* ContactMethodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodButton.swift; sourceTree = "<group>"; };
 		68A3344D22868255008E9F1D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		7539F0F33A153C98273C3D06 /* Pods-StayInTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayInTouch.release.xcconfig"; path = "Target Support Files/Pods-StayInTouch/Pods-StayInTouch.release.xcconfig"; sourceTree = "<group>"; };
+		802D8177001040F8D00DEE2B /* Pods-StayInTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayInTouch.debug.xcconfig"; path = "Target Support Files/Pods-StayInTouch/Pods-StayInTouch.debug.xcconfig"; sourceTree = "<group>"; };
+		8385C3FE4E143CEAB25AF91B /* Pods-StayInTouchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayInTouchTests.debug.xcconfig"; path = "Target Support Files/Pods-StayInTouchTests/Pods-StayInTouchTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B0046210C7F1DE5A5DFBBCD /* Pods_StayInTouchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StayInTouchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD3B0380C9C2584AAC10166A /* Pods_StayInTouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StayInTouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1E80A64811A0DEC371D43D2 /* Pods_StayInTouchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StayInTouchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				146B476D63AF75945C37A244 /* Pods_StayInTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B79FC7E63C00B8CEBA1C3BC9 /* Pods_StayInTouchTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,12 +99,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A82A426B02DEB96E48BCF49 /* Pods_StayInTouchUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E5C8AD2E2BFC76913FE23B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				802D8177001040F8D00DEE2B /* Pods-StayInTouch.debug.xcconfig */,
+				7539F0F33A153C98273C3D06 /* Pods-StayInTouch.release.xcconfig */,
+				8385C3FE4E143CEAB25AF91B /* Pods-StayInTouchTests.debug.xcconfig */,
+				0C1AD8C0A9329E530F4B286A /* Pods-StayInTouchTests.release.xcconfig */,
+				47C514417BEC8A636ED11916 /* Pods-StayInTouchUITests.debug.xcconfig */,
+				29F1AF7AFA8BEC324382AC61 /* Pods-StayInTouchUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		68A333FB22864D37008E9F1D = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +127,8 @@
 				68A3341B22864D37008E9F1D /* StayInTouchTests */,
 				68A3342622864D37008E9F1D /* StayInTouchUITests */,
 				68A3340522864D37008E9F1D /* Products */,
+				1E5C8AD2E2BFC76913FE23B5 /* Pods */,
+				6B7DC300066C41D8052A2BA5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,6 +221,16 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		6B7DC300066C41D8052A2BA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD3B0380C9C2584AAC10166A /* Pods_StayInTouch.framework */,
+				9B0046210C7F1DE5A5DFBBCD /* Pods_StayInTouchTests.framework */,
+				D1E80A64811A0DEC371D43D2 /* Pods_StayInTouchUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,9 +238,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68A3342C22864D37008E9F1D /* Build configuration list for PBXNativeTarget "StayInTouch" */;
 			buildPhases = (
+				5FA041FCF37ACDA5DD737721 /* [CP] Check Pods Manifest.lock */,
 				68A3340022864D37008E9F1D /* Sources */,
 				68A3340122864D37008E9F1D /* Frameworks */,
 				68A3340222864D37008E9F1D /* Resources */,
+				358BA1DD5B6662BED7F131EB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,6 +257,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68A3342F22864D37008E9F1D /* Build configuration list for PBXNativeTarget "StayInTouchTests" */;
 			buildPhases = (
+				36AD0EE1A5FE1499C9DC4B2D /* [CP] Check Pods Manifest.lock */,
 				68A3341422864D37008E9F1D /* Sources */,
 				68A3341522864D37008E9F1D /* Frameworks */,
 				68A3341622864D37008E9F1D /* Resources */,
@@ -232,6 +276,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68A3343222864D37008E9F1D /* Build configuration list for PBXNativeTarget "StayInTouchUITests" */;
 			buildPhases = (
+				6FAA27C9D4BC0EB7C5D0FD0F /* [CP] Check Pods Manifest.lock */,
 				68A3341F22864D37008E9F1D /* Sources */,
 				68A3342022864D37008E9F1D /* Frameworks */,
 				68A3342122864D37008E9F1D /* Resources */,
@@ -315,6 +360,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		358BA1DD5B6662BED7F131EB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StayInTouch/Pods-StayInTouch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StayInTouch/Pods-StayInTouch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StayInTouch/Pods-StayInTouch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		36AD0EE1A5FE1499C9DC4B2D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StayInTouchTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FA041FCF37ACDA5DD737721 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StayInTouch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FAA27C9D4BC0EB7C5D0FD0F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StayInTouchUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		68A3340022864D37008E9F1D /* Sources */ = {
@@ -504,6 +635,7 @@
 		};
 		68A3342D22864D37008E9F1D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 802D8177001040F8D00DEE2B /* Pods-StayInTouch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -522,6 +654,7 @@
 		};
 		68A3342E22864D37008E9F1D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7539F0F33A153C98273C3D06 /* Pods-StayInTouch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -540,6 +673,7 @@
 		};
 		68A3343022864D37008E9F1D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8385C3FE4E143CEAB25AF91B /* Pods-StayInTouchTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -561,6 +695,7 @@
 		};
 		68A3343122864D37008E9F1D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C1AD8C0A9329E530F4B286A /* Pods-StayInTouchTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -582,6 +717,7 @@
 		};
 		68A3343322864D37008E9F1D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47C514417BEC8A636ED11916 /* Pods-StayInTouchUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -602,6 +738,7 @@
 		};
 		68A3343422864D37008E9F1D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29F1AF7AFA8BEC324382AC61 /* Pods-StayInTouchUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -14,23 +14,40 @@ class ContactsViewController: UIViewController {
     var phoneContacts = [PhoneContact]()
     var filter: ContactsFilter = .none
     let contactViewController = ContactMethodViewController()
+    let contactDetailViewController = ContactDetailViewController()
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var letsGoButton: UIButton!
+    
+    lazy var pictureView: UIImageView = {
+        let pictureView = UIImageView()
+        pictureView.backgroundColor = .black
+        pictureView.translatesAutoresizingMaskIntoConstraints = false
+        pictureView.layer.cornerRadius = 40
+        return pictureView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadContacts(filter: filter)
         nameLabel.isHidden = true
-        
-        addChild(contactViewController)
-        contactViewController.view.isHidden = true
-        self.contactViewController.view.alpha = 0.0
-        view.addSubview(contactViewController.view)
-        contactViewController.view.frame = CGRect(x: 0, y: (view.center.y - 20), width: view.bounds.width, height: (view.bounds.height / 2) + 20)
-        contactViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        contactViewController.didMove(toParent: self)
-        contactViewController.view.transform = CGAffineTransform(translationX: 0, y: view.frame.midY)
+        pictureView.isHidden = true
+        let vcs: [UIViewController] = [contactDetailViewController, contactViewController]
+        for vc in vcs {
+            addChild(vc)
+            vc.view.isHidden = true
+            vc.view.alpha = 0.0
+            view.addSubview(vc.view)
+            vc.view.frame = CGRect(x: 0, y: (view.center.y - 20), width: view.bounds.width, height: (view.bounds.height / 2) + 20)
+            vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            vc.didMove(toParent: self)
+            vc.view.transform = CGAffineTransform(translationX: 0, y: view.frame.midY)
+        }
+
         nameLabel.transform = CGAffineTransform(translationX: -1 * (view.frame.midX + (nameLabel.frame.width / 2)), y: 0)
+        pictureView.transform = CGAffineTransform(translationX: -1 * (view.frame.midX + (nameLabel.frame.width / 2)), y: 0)
+        view.addSubview(pictureView)
+        setupConstraints()
+        
         
         contactViewController.parentController = childSwipeHandler
     }
@@ -39,6 +56,15 @@ class ContactsViewController: UIViewController {
         guard let randomContact = phoneContacts.randomElement() else { return }
         showContactMethodView(of: randomContact)
         showLabel(name: randomContact.name)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            pictureView.widthAnchor.constraint(equalToConstant: 80),
+            pictureView.heightAnchor.constraint(equalTo: pictureView.widthAnchor),
+            pictureView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -15),
+            pictureView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
     
     private func childSwipeHandler(direction: UISwipeGestureRecognizer.Direction) {
@@ -66,11 +92,14 @@ class ContactsViewController: UIViewController {
         UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
             self.nameLabel.isHidden = false
             self.nameLabel.transform = right
+            self.pictureView.isHidden = false
+            self.pictureView.transform = right
         }, completion: nil)
     }
     
     private func showContactMethodView(of contact: PhoneContact) {
         contactViewController.activeContact = contact
+        contactDetailViewController.activeContact = contact
         let up = CGAffineTransform(translationX: 0, y: 0)
         UIView.animate(withDuration: 1.0, delay: 0.2, options: .curveEaseInOut, animations: {
             self.contactViewController.view.isHidden = false

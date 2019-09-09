@@ -7,17 +7,14 @@
 //
 
 import UIKit
-import Instabug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Instabug.start(withToken: "62c0c56928e7204e814a9d41a237813e", invocationEvents: [.shake, .screenshot])
         return true
     }
 

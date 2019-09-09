@@ -41,19 +41,19 @@ class ContactMethodView: UIView {
         return mailButton
     }()
     
-    lazy var contentView: UIView = {
-        let contentView = UIView()
-        contentView.backgroundColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 0.5)
-        contentView.layer.shadowColor = UIColor.gray.cgColor
-        contentView.layer.shadowOffset = CGSize(width: 0, height: 10)
-        contentView.layer.shadowOpacity = 1
-        contentView.layer.shadowRadius = 5
-        contentView.addSubview(smsButton)
-        contentView.addSubview(callButton)
-        contentView.addSubview(facetimeButton)
-        contentView.addSubview(mailButton)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        return contentView
+    lazy var buttonContentView: UIView = {
+        let buttonContentView = UIView()
+        //buttonContentView.backgroundColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 0.5)
+//        buttonContentView.layer.shadowColor = UIColor.gray.cgColor
+//        buttonContentView.layer.shadowOffset = CGSize(width: 0, height: 10)
+//        buttonContentView.layer.shadowOpacity = 1
+//        buttonContentView.layer.shadowRadius = 5
+        buttonContentView.addSubview(smsButton)
+        buttonContentView.addSubview(callButton)
+        buttonContentView.addSubview(facetimeButton)
+        buttonContentView.addSubview(mailButton)
+        buttonContentView.translatesAutoresizingMaskIntoConstraints = false
+        return buttonContentView
     }()
     
     override init(frame: CGRect) {
@@ -68,7 +68,7 @@ class ContactMethodView: UIView {
     
     private func setupView() {
         backgroundColor = .white
-        addSubview(contentView)
+        addSubview(buttonContentView)
         setupLayout()
         setupGestureRecognizers()
         setupImages()
@@ -94,36 +94,36 @@ class ContactMethodView: UIView {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            // top left layout smsButton in contentView
-            smsButton.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 15),
-            smsButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            // top left layout smsButton in buttonContentView
+            smsButton.bottomAnchor.constraint(equalTo: buttonContentView.centerYAnchor, constant: -15),
+            smsButton.trailingAnchor.constraint(equalTo: buttonContentView.centerXAnchor, constant: -10),
             smsButton.widthAnchor.constraint(equalToConstant: 100),
             smsButton.heightAnchor.constraint(equalToConstant: 100),
             
-            // top right layout callButton in contentView
-            callButton.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 15),
-            callButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            // top right layout callButton in buttonContentView
+            callButton.bottomAnchor.constraint(equalTo: buttonContentView.centerYAnchor, constant: -15),
+            callButton.leadingAnchor.constraint(equalTo: buttonContentView.centerXAnchor, constant: 10),
             callButton.widthAnchor.constraint(equalToConstant: 100),
             callButton.heightAnchor.constraint(equalToConstant: 100),
             
-            // bottom right layout facetimeButton in contentView
-            facetimeButton.topAnchor.constraint(equalTo: contentView.centerYAnchor),
-            facetimeButton.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -10),
+            // bottom right layout facetimeButton in buttonContentView
+            facetimeButton.topAnchor.constraint(equalTo: buttonContentView.centerYAnchor, constant: 15),
+            facetimeButton.trailingAnchor.constraint(equalTo: buttonContentView.centerXAnchor, constant: -10),
             facetimeButton.widthAnchor.constraint(equalToConstant: 100),
             facetimeButton.heightAnchor.constraint(equalToConstant: 100),
             
-            // bottom left layout mailButton in contentView
-            mailButton.topAnchor.constraint(equalTo: contentView.centerYAnchor),
-            mailButton.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 10),
+            // bottom left layout mailButton in buttonContentView
+            mailButton.topAnchor.constraint(equalTo: buttonContentView.centerYAnchor, constant: 15),
+            mailButton.leadingAnchor.constraint(equalTo: buttonContentView.centerXAnchor, constant: 10),
             mailButton.widthAnchor.constraint(equalToConstant: 100),
             mailButton.heightAnchor.constraint(equalToConstant: 100),
             
-            //contentView
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
-            ])
+            //buttonContentView
+            buttonContentView.topAnchor.constraint(equalTo: topAnchor),
+            buttonContentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            buttonContentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            buttonContentView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
     
     private func setupGestureRecognizers() {

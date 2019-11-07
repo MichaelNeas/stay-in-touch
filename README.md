@@ -1,5 +1,5 @@
 # Contaxe
-Application designed for you to keep in touch with contacts in your google phone or delete them if you don't need them anymore
+Application designed for you to keep in touch with contacts in your phone or delete them
 
 Fetching contacts apple developer [docs](https://developer.apple.com/documentation/contacts)
 

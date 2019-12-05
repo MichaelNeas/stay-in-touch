@@ -9,8 +9,42 @@
 import SwiftUI
 
 struct ContentView: View {
+
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Circle()
+                .fill(Color.green)
+            
+            VStack {
+                Text("Dana Higgins")
+                    .font(.title)
+                Text("Boston, MA")
+            }.padding()
+            
+            
+            VStack {
+                HStack {
+//                    Button(action: {
+//                        self.tapped(1)
+//                    }) {
+//                        Image().renderingMode(.original)
+//                            .clipShape(Circle())
+//                            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+//                            .shadow(color: .black, radius: 2)
+//                    }.padding()
+                    Circle()
+                }
+                HStack {
+                    Circle()
+                    Circle()
+                }
+            }
+            
+        }.padding()
+    }
+    
+    func tapped(_ number: Int) {
+        print(number)
     }
 }
 

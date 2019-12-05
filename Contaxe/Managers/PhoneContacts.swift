@@ -1,9 +1,9 @@
 //
 //  PhoneContacts.swift
-//  StayInTouch
+//  Contaxe
 //
-//  Created by Michael Neas on 5/10/19.
-//  Copyright © 2019 Michael Neas. All rights reserved.
+//  Created by Michael Neas on 12/4/19.
+//  Copyright © 2019 Neas Lease. All rights reserved.
 //
 
 import Foundation
@@ -13,6 +13,13 @@ enum ContactsFilter {
     case none
     case mail
     case message
+}
+
+enum ContactContext: String {
+    case phone = "tel://"
+    case facetime = "facetime://"
+    case sms = "sms:"
+    case email = "mailto:"
 }
 
 class PhoneContacts {
@@ -43,5 +50,28 @@ class PhoneContacts {
         }
         
         return results
+    }
+    
+    private func contact(phoneNumber: String, context: ContactContext) {
+        guard phoneNumber.isValid(regex: .phone) == true else { return }
+        let validNumber = phoneNumber.onlyDigits().prepend(context.rawValue)
+        
+        if let url = URL(string: validNumber), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+    
+    private func contact(email: String) {
+        if let url = URL(string: email), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 }

@@ -57,21 +57,13 @@ class PhoneContacts {
         let validNumber = phoneNumber.onlyDigits().prepend(context.rawValue)
         
         if let url = URL(string: validNumber), UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
+            UIApplication.shared.open(url)
         }
     }
     
     private func contact(email: String) {
         if let url = URL(string: email), UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
+            UIApplication.shared.open(url)
         }
     }
 }

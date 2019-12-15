@@ -1,31 +1,14 @@
 //
-//  ContentView.swift
+//  ContactView.swift
 //  Contaxe
 //
-//  Created by Michael Neas on 12/4/19.
+//  Created by Michael Neas on 12/15/19.
 //  Copyright © 2019 Neas Lease. All rights reserved.
 //
 
 import SwiftUI
 
-struct ContentView: View {
-    struct ContactButton: View {
-        var systemImage: String
-        
-        var body: some View {
-            Button(action: {
-                print("tapped")
-            }) {
-                Image(systemName: systemImage)
-                .font(.largeTitle)
-                .foregroundColor(.white)
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding(36.0)
-                    .overlay(Circle().stroke(Color.white, lineWidth: 2))
-            }
-        }
-    }
-    
+struct ContactView: View {
     var body: some View {
         VStack {
             Spacer(minLength: 100.0)
@@ -66,14 +49,10 @@ struct ContentView: View {
         .background(LinearGradient(gradient: Gradient(colors: [.darkPurple, .cyan]), startPoint: .topLeading, endPoint: .bottomTrailing))
         .edgesIgnoringSafeArea(.all)
     }
-    
-    func tapped(_ number: Int) {
-        print(number)
-    }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContactView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContactView()
     }
 }

@@ -11,20 +11,24 @@ import SwiftUI
 struct ContactView: View {
     var contact: PhoneContact
     
+    func avatar() -> AnyView {
+        if let avatar = contact.avatarData {
+            return AnyView(Image(uiImage: UIImage(data: avatar)!))
+        } else {
+            return AnyView(Text(contact.initials)
+            .font(Font.system(size: 60, design: .default))
+            .fontWeight(.bold)
+            .padding(80.0)
+            .background(Color.gray)
+            .foregroundColor(.white)
+            )
+        }
+    }
+    
     var body: some View {
         VStack {
-            Spacer(minLength: 100.0)
-            
-            Text(contact.initials)
-                .font(Font.system(size: 60, design: .default))
-                .fontWeight(.bold)
-                .padding(80.0)
-                .background(Color.gray)
-                .foregroundColor(.white)
-                .clipShape(Circle())
-                .padding(.bottom, 40.0)
-
-            
+            Spacer(minLength: 80.0)
+            avatar().clipShape(Circle()).padding(.bottom, 40.0)
             VStack {
                 Text(contact.name)
                     .font(.title)
@@ -45,7 +49,6 @@ struct ContactView: View {
                     ContactButton(systemImage: "video")
                 }.padding()
             }.padding(EdgeInsets(top: 10.0, leading: 36.0, bottom: 60.0, trailing: 36.0))
-            
         }
         .padding()
         .background(LinearGradient(gradient: Gradient(colors: [.darkPurple, .cyan]), startPoint: .topLeading, endPoint: .bottomTrailing))

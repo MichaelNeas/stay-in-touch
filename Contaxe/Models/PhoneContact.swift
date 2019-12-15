@@ -10,26 +10,44 @@ import Foundation
 import ContactsUI
 
 class PhoneContact: NSObject {
+    let contact: CNContact
     
-    var name: String?
-    var avatarData: Data?
+    var name: String {
+        contact.givenName + " " + contact.familyName
+    }
+
+    var avatarData: Data? {
+        contact.thumbnailImageData
+    }
+    
     var phoneNumber: [String] = [String]()
     var email: [String] = [String]()
-    var isSelected: Bool = false
-    var isInvited = false
+    
+    var location: String {
+        (contact.postalAddresses.first?.value.city ?? "Boston")
+        + ", " +
+        (contact.postalAddresses.first?.value.state ?? "MA")
+    }
+    
+    var initials: String {
+        "\(contact.givenName.first ?? Character(""))" + "\(contact.familyName.first ?? Character(""))"
+    }
     
     init(contact: CNContact) {
-        name = contact.givenName + " " + contact.familyName
-        avatarData = contact.thumbnailImageData
+        self.contact = contact
+        
         for phone in contact.phoneNumbers {
             phoneNumber.append(phone.value.stringValue)
         }
         for mail in contact.emailAddresses {
             email.append(mail.value as String)
         }
+        
+        
     }
     
     override init() {
+        self.contact = CNContact()
         super.init()
     }
 }

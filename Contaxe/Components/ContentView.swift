@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    var phoneContacts = [PhoneContact]()
     var body: some View {
-        ContactView()
+        ContactView(contact: phoneContacts.randomElement() ?? PhoneContact())
     }
 }
 

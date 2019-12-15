@@ -23,12 +23,13 @@ enum ContactContext: String {
 }
 
 class PhoneContacts {
-    class func getContacts(filter: ContactsFilter = .none) -> [CNContact] {
+    func getContacts(filter: ContactsFilter = .none) -> [CNContact] {
         let contactStore = CNContactStore()
         let keysToFetch = [
             CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
             CNContactPhoneNumbersKey,
             CNContactEmailAddressesKey,
+            CNContactPostalAddressesKey,
             CNContactThumbnailImageDataKey] as [Any]
         
         var allContainers: [CNContainer] = []

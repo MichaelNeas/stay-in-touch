@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct ContactView: View {
+    var contact: PhoneContact
+    
     var body: some View {
         VStack {
             Spacer(minLength: 100.0)
             
-            Text("DH")
+            Text(contact.initials)
                 .font(Font.system(size: 60, design: .default))
                 .fontWeight(.bold)
                 .padding(80.0)
@@ -24,11 +26,11 @@ struct ContactView: View {
 
             
             VStack {
-                Text("Dana Higgins")
+                Text(contact.name)
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                Text("Boston, MA")
+                Text(contact.location)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
             }.padding()
@@ -53,6 +55,6 @@ struct ContactView: View {
 
 struct ContactView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactView()
+        ContactView(contact: PhoneContact())
     }
 }

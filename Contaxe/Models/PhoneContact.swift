@@ -24,9 +24,14 @@ class PhoneContact: NSObject {
     var email: [String] = [String]()
     
     var location: String {
-        (contact.postalAddresses.first?.value.city ?? "Boston")
-        + ", " +
-        (contact.postalAddresses.first?.value.state ?? "MA")
+        var location = ""
+        if let city = contact.postalAddresses.first?.value.city {
+            location = city
+        }
+        if let state = contact.postalAddresses.first?.value.state {
+            location += location.isEmpty ? state : ", \(state)"
+        }
+        return location
     }
     
     var initials: String {
@@ -42,8 +47,6 @@ class PhoneContact: NSObject {
         for mail in contact.emailAddresses {
             email.append(mail.value as String)
         }
-        
-        
     }
     
     override init() {

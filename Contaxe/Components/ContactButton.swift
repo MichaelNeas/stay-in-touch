@@ -16,10 +16,10 @@ struct ContactButton: View {
             print("tapped")
         }) {
             Image(systemName: systemImage)
-            .font(.largeTitle)
-            .foregroundColor(.white)
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding(36.0)
+                .font(.largeTitle)
+                .foregroundColor(.white)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .padding(36.0)
                 .overlay(Circle().stroke(Color.white, lineWidth: 2))
         }
     }

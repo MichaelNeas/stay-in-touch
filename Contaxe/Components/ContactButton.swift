@@ -10,10 +10,11 @@ import SwiftUI
 
 struct ContactButton: View {
     var systemImage: String
+    var tapHandler: (() -> ())?
     
     var body: some View {
         Button(action: {
-            print("tapped")
+            self.tapHandler?()
         }) {
             Image(systemName: systemImage)
                 .font(.largeTitle)

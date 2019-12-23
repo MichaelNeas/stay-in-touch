@@ -51,6 +51,13 @@
 	</array>
 	<key>NSContactsUsageDescription</key>
 	<string>ContAXE needs access to your contacts list to work</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+		<string>sms</string>
+		<string>facetime</string>
+		<string>tel</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

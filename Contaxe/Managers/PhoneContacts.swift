@@ -18,7 +18,7 @@ enum ContactsFilter {
 enum ContactContext: String {
     case phone = "tel://"
     case facetime = "facetime://"
-    case sms = "sms:"
+    case sms = "sms:+"
     case email = "mailto:"
 }
 
@@ -53,7 +53,7 @@ class PhoneContacts {
         return results
     }
     
-    private func contact(phoneNumber: String, context: ContactContext) {
+    func contact(phoneNumber: String, context: ContactContext) {
         guard phoneNumber.isValid(regex: .phone) == true else { return }
         let validNumber = phoneNumber.onlyDigits().prepend(context.rawValue)
         
@@ -62,7 +62,7 @@ class PhoneContacts {
         }
     }
     
-    private func contact(email: String) {
+    func contact(email: String) {
         if let url = URL(string: email), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }

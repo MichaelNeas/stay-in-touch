@@ -35,7 +35,7 @@ class PhoneContact: NSObject {
     }
     
     var initials: String {
-        "\(contact.givenName.first ?? Character(""))" + "\(contact.familyName.first ?? Character(""))"
+        "\(contact.givenName.prefix(1) + contact.familyName.prefix(1))"
     }
     
     init(contact: CNContact) {

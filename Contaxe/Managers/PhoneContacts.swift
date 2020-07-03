@@ -55,9 +55,11 @@ class PhoneContacts {
     
     func contact(phoneNumber: String, context: ContactContext) {
         guard phoneNumber.isValid(regex: .phone) == true else { return }
-        let validNumber = phoneNumber.onlyDigits().prepend(context.rawValue)
-        
-        if let url = URL(string: validNumber), UIApplication.shared.canOpenURL(url) {
+        var validNumber = phoneNumber.onlyDigits()
+        if let first = validNumber.first, first != Character("1") {
+            validNumber = validNumber.prepend("1")
+        }
+        if let url = URL(string: validNumber.prepend(context.rawValue)), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }

@@ -10,13 +10,28 @@ import SwiftUI
 
 struct ContentView: View {
     var phoneContacts = [PhoneContact]()
-    var body: some View {
-        ContactView(contact: phoneContacts.randomElement() ?? PhoneContact(), connect: PhoneContacts())
+    @State var contact: PhoneContact
+    
+    init(contacts: [PhoneContact]) {
+        self.phoneContacts = contacts
+        self._contact = .init(initialValue: contacts.randomElement() ?? PhoneContact())
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    var body: some View {
+        ZStack {
+            ContactView(contact: $contact, connect: PhoneContacts())
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: { self.contact = self.phoneContacts.randomElement() ?? PhoneContact() }) {
+                        Image(systemName: "arrow.clockwise.circle")
+                            .font(.system(size: 36, weight: .thin))
+                            .foregroundColor(.gray)
+                    }.padding()
+                }
+                Spacer()
+            }
+        }
+        
     }
 }

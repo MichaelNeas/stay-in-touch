@@ -9,15 +9,16 @@
 import SwiftUI
 
 struct ContactView: View {
-    var contact: PhoneContact
+    @Binding var contact: PhoneContact
     var connect: PhoneContacts
     
     func avatar() -> AnyView {
         if let avatar = contact.avatarData, let avatarImage = UIImage(data: avatar) {
             return AnyView(Image(uiImage: avatarImage)
                 .resizable()
-                .aspectRatio(1.0, contentMode: .fit)
-                .padding(70.0)
+                .aspectRatio(1.0, contentMode: .fill)
+                .frame(width: 200, height: 200, alignment: .top)
+                .clipped()
             )
         } else {
             return AnyView(Text(contact.initials)
@@ -35,7 +36,8 @@ struct ContactView: View {
             Spacer()
             avatar()
                 .clipShape(Circle())
-                .padding(EdgeInsets(top: 50.0, leading: 0, bottom: 0, trailing: 0))
+                .padding(.top, 50.0)
+            
             Spacer()
             
             VStack {
@@ -47,8 +49,9 @@ struct ContactView: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
             }.padding()
+            
             Spacer()
-    
+            
             VStack {
                 HStack {
                     ContactButton(systemImage: "message", tapHandler: text)
@@ -63,6 +66,7 @@ struct ContactView: View {
         .padding()
         .background(LinearGradient(gradient: Gradient(colors: [.darkPurple, .cyan]), startPoint: .topLeading, endPoint: .bottomTrailing))
         .edgesIgnoringSafeArea(.all)
+        
     }
     
     func text() {
@@ -84,11 +88,5 @@ struct ContactView: View {
     func faceTime() {
         guard let firstNumber = contact.phoneNumber.first else { print("No number"); return }
         connect.contact(phoneNumber: firstNumber, context: .facetime)
-    }
-}
-
-struct ContactView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactView(contact: PhoneContact(), connect: PhoneContacts())
     }
 }

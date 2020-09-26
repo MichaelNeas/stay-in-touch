@@ -10,6 +10,7 @@
 		6846AF95251FE40900411DC5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6846AF94251FE40900411DC5 /* SettingsView.swift */; };
 		6846AF98251FE99B00411DC5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6846AF97251FE99B00411DC5 /* Notifications.swift */; };
 		6846AF9D251FF60100411DC5 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6846AF9C251FF60100411DC5 /* UserDefaults.swift */; };
+		6846AFA0251FFBFF00411DC5 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6846AF9F251FFBFF00411DC5 /* Frequency.swift */; };
 		68A7513E251FCF3800C5AD71 /* ContaxeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A7513D251FCF3800C5AD71 /* ContaxeApp.swift */; };
 		68A75142251FCF3A00C5AD71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A75141251FCF3A00C5AD71 /* Assets.xcassets */; };
 		68A75145251FCF3A00C5AD71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A75144251FCF3A00C5AD71 /* Preview Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		6846AF94251FE40900411DC5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6846AF97251FE99B00411DC5 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		6846AF9C251FF60100411DC5 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		6846AF9F251FFBFF00411DC5 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		68A7513A251FCF3800C5AD71 /* Contaxe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contaxe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68A7513D251FCF3800C5AD71 /* ContaxeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContaxeApp.swift; sourceTree = "<group>"; };
 		68A75141251FCF3A00C5AD71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		68A7516C251FD00C00C5AD71 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6846AF9F251FFBFF00411DC5 /* Frequency.swift */,
 				68A7516D251FD00C00C5AD71 /* PhoneContact.swift */,
 			);
 			path = Models;
@@ -205,6 +208,7 @@
 				6846AF95251FE40900411DC5 /* SettingsView.swift in Sources */,
 				68A75152251FCF7E00C5AD71 /* ContactButton.swift in Sources */,
 				68A75171251FD00C00C5AD71 /* PhoneContact.swift in Sources */,
+				6846AFA0251FFBFF00411DC5 /* Frequency.swift in Sources */,
 				68A75153251FCF7E00C5AD71 /* ContactView.swift in Sources */,
 				68A75151251FCF7E00C5AD71 /* ContentView.swift in Sources */,
 				68A7516E251FD00C00C5AD71 /* PhoneContacts.swift in Sources */,

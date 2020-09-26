@@ -19,9 +19,26 @@ struct SettingsView: View {
                 VStack {
                     enableNotifications(text: "Notifications Enabled")
                     if settings.wantsNotifications {
-                        // frequency
-                        // time of day
-                        // random
+                        VStack {
+                            if !settings.randomMode {
+                            // frequency
+                            Picker("Frequency", selection: $settings.selectedFrequency) {
+                                ForEach(Frequency.allCases) { freq in
+                                    Text(freq.description).tag(freq)
+                                }
+                            }.pickerStyle(SegmentedPickerStyle())
+                            
+                            Text("Selected: \(settings.selectedFrequency.description)")
+                            
+                            // time of day
+                            DatePicker("Time of Day", selection: $settings.timeOfDay, displayedComponents: [.hourAndMinute])
+                            }
+                            
+                            // random mode
+                            Toggle(isOn: $settings.randomMode, label: {
+                                Text("Random Mode")
+                            })
+                        }.padding()
                     }
                 }
             }.padding(.top, 40)

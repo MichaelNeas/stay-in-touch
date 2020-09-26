@@ -7,39 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6880FB002398852400D33F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6880FAFF2398852400D33F31 /* AppDelegate.swift */; };
-		6880FB022398852400D33F31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6880FB012398852400D33F31 /* SceneDelegate.swift */; };
-		6880FB042398852400D33F31 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6880FB032398852400D33F31 /* ContentView.swift */; };
-		6880FB062398852500D33F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6880FB052398852500D33F31 /* Assets.xcassets */; };
-		6880FB092398852500D33F31 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6880FB082398852500D33F31 /* Preview Assets.xcassets */; };
-		6880FB0C2398852500D33F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6880FB0A2398852500D33F31 /* LaunchScreen.storyboard */; };
-		6880FB1D239885D000D33F31 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6880FB1C239885D000D33F31 /* String.swift */; };
-		6880FB1F239885E700D33F31 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6880FB1E239885E700D33F31 /* Color.swift */; };
-		6880FB222398866600D33F31 /* PhoneContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6880FB212398866600D33F31 /* PhoneContact.swift */; };
-		6880FB242398867C00D33F31 /* PhoneContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6880FB232398867C00D33F31 /* PhoneContacts.swift */; };
-		68EBFC8E23A6D60900B6A643 /* ContactButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EBFC8D23A6D60900B6A643 /* ContactButton.swift */; };
-		68EBFC9323A6D87700B6A643 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EBFC9223A6D87700B6A643 /* ContactView.swift */; };
+		68A7513E251FCF3800C5AD71 /* ContaxeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A7513D251FCF3800C5AD71 /* ContaxeApp.swift */; };
+		68A75142251FCF3A00C5AD71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A75141251FCF3A00C5AD71 /* Assets.xcassets */; };
+		68A75145251FCF3A00C5AD71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A75144251FCF3A00C5AD71 /* Preview Assets.xcassets */; };
+		68A75151251FCF7E00C5AD71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A7514E251FCF7E00C5AD71 /* ContentView.swift */; };
+		68A75152251FCF7E00C5AD71 /* ContactButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A7514F251FCF7E00C5AD71 /* ContactButton.swift */; };
+		68A75153251FCF7E00C5AD71 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A75150251FCF7E00C5AD71 /* ContactView.swift */; };
+		68A7516E251FD00C00C5AD71 /* PhoneContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A75168251FD00C00C5AD71 /* PhoneContacts.swift */; };
+		68A7516F251FD00C00C5AD71 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A7516A251FD00C00C5AD71 /* String.swift */; };
+		68A75170251FD00C00C5AD71 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A7516B251FD00C00C5AD71 /* Color.swift */; };
+		68A75171251FD00C00C5AD71 /* PhoneContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A7516D251FD00C00C5AD71 /* PhoneContact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6880FAFC2398852400D33F31 /* Contaxe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contaxe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6880FAFF2398852400D33F31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6880FB012398852400D33F31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6880FB032398852400D33F31 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		6880FB052398852500D33F31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6880FB082398852500D33F31 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		6880FB0B2398852500D33F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6880FB0D2398852500D33F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6880FB1C239885D000D33F31 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		6880FB1E239885E700D33F31 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		6880FB212398866600D33F31 /* PhoneContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContact.swift; sourceTree = "<group>"; };
-		6880FB232398867C00D33F31 /* PhoneContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContacts.swift; sourceTree = "<group>"; };
-		68EBFC8D23A6D60900B6A643 /* ContactButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactButton.swift; sourceTree = "<group>"; };
-		68EBFC9223A6D87700B6A643 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		68A7513A251FCF3800C5AD71 /* Contaxe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contaxe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68A7513D251FCF3800C5AD71 /* ContaxeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContaxeApp.swift; sourceTree = "<group>"; };
+		68A75141251FCF3A00C5AD71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		68A75144251FCF3A00C5AD71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		68A75146251FCF3A00C5AD71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68A7514E251FCF7E00C5AD71 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		68A7514F251FCF7E00C5AD71 /* ContactButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactButton.swift; sourceTree = "<group>"; };
+		68A75150251FCF7E00C5AD71 /* ContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		68A75168251FD00C00C5AD71 /* PhoneContacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneContacts.swift; sourceTree = "<group>"; };
+		68A7516A251FD00C00C5AD71 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		68A7516B251FD00C00C5AD71 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		68A7516D251FD00C00C5AD71 /* PhoneContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneContact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6880FAF92398852400D33F31 /* Frameworks */ = {
+		68A75137251FCF3800C5AD71 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,78 +45,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6880FAF32398852400D33F31 = {
+		68A75131251FCF3800C5AD71 = {
 			isa = PBXGroup;
 			children = (
-				6880FAFE2398852400D33F31 /* Contaxe */,
-				6880FAFD2398852400D33F31 /* Products */,
+				68A7513C251FCF3800C5AD71 /* Contaxe */,
+				68A7513B251FCF3800C5AD71 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6880FAFD2398852400D33F31 /* Products */ = {
+		68A7513B251FCF3800C5AD71 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6880FAFC2398852400D33F31 /* Contaxe.app */,
+				68A7513A251FCF3800C5AD71 /* Contaxe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6880FAFE2398852400D33F31 /* Contaxe */ = {
+		68A7513C251FCF3800C5AD71 /* Contaxe */ = {
 			isa = PBXGroup;
 			children = (
-				68EBFC8C23A6D5F700B6A643 /* Components */,
-				6880FB132398853300D33F31 /* Extensions */,
-				6880FB202398865700D33F31 /* Managers */,
-				68EBFC8F23A6D73200B6A643 /* Models */,
-				6880FAFF2398852400D33F31 /* AppDelegate.swift */,
-				6880FB012398852400D33F31 /* SceneDelegate.swift */,
-				6880FB052398852500D33F31 /* Assets.xcassets */,
-				6880FB0A2398852500D33F31 /* LaunchScreen.storyboard */,
-				6880FB0D2398852500D33F31 /* Info.plist */,
-				6880FB072398852500D33F31 /* Preview Content */,
+				68A7514D251FCF6B00C5AD71 /* Components */,
+				68A7513D251FCF3800C5AD71 /* ContaxeApp.swift */,
+				68A75169251FD00C00C5AD71 /* Extensions */,
+				68A75167251FD00C00C5AD71 /* Managers */,
+				68A7516C251FD00C00C5AD71 /* Models */,
+				68A75141251FCF3A00C5AD71 /* Assets.xcassets */,
+				68A75146251FCF3A00C5AD71 /* Info.plist */,
+				68A75143251FCF3A00C5AD71 /* Preview Content */,
 			);
 			path = Contaxe;
 			sourceTree = "<group>";
 		};
-		6880FB072398852500D33F31 /* Preview Content */ = {
+		68A75143251FCF3A00C5AD71 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				6880FB082398852500D33F31 /* Preview Assets.xcassets */,
+				68A75144251FCF3A00C5AD71 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6880FB132398853300D33F31 /* Extensions */ = {
+		68A7514D251FCF6B00C5AD71 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				6880FB1C239885D000D33F31 /* String.swift */,
-				6880FB1E239885E700D33F31 /* Color.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		6880FB202398865700D33F31 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				6880FB232398867C00D33F31 /* PhoneContacts.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		68EBFC8C23A6D5F700B6A643 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				6880FB032398852400D33F31 /* ContentView.swift */,
-				68EBFC8D23A6D60900B6A643 /* ContactButton.swift */,
-				68EBFC9223A6D87700B6A643 /* ContactView.swift */,
+				68A7514F251FCF7E00C5AD71 /* ContactButton.swift */,
+				68A75150251FCF7E00C5AD71 /* ContactView.swift */,
+				68A7514E251FCF7E00C5AD71 /* ContentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		68EBFC8F23A6D73200B6A643 /* Models */ = {
+		68A75167251FD00C00C5AD71 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				6880FB212398866600D33F31 /* PhoneContact.swift */,
+				68A75168251FD00C00C5AD71 /* PhoneContacts.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		68A75169251FD00C00C5AD71 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				68A7516A251FD00C00C5AD71 /* String.swift */,
+				68A7516B251FD00C00C5AD71 /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		68A7516C251FD00C00C5AD71 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				68A7516D251FD00C00C5AD71 /* PhoneContact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,13 +122,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6880FAFB2398852400D33F31 /* Contaxe */ = {
+		68A75139251FCF3800C5AD71 /* Contaxe */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6880FB102398852500D33F31 /* Build configuration list for PBXNativeTarget "Contaxe" */;
+			buildConfigurationList = 68A75149251FCF3B00C5AD71 /* Build configuration list for PBXNativeTarget "Contaxe" */;
 			buildPhases = (
-				6880FAF82398852400D33F31 /* Sources */,
-				6880FAF92398852400D33F31 /* Frameworks */,
-				6880FAFA2398852400D33F31 /* Resources */,
+				68A75136251FCF3800C5AD71 /* Sources */,
+				68A75137251FCF3800C5AD71 /* Frameworks */,
+				68A75138251FCF3800C5AD71 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -142,25 +136,24 @@
 			);
 			name = Contaxe;
 			productName = Contaxe;
-			productReference = 6880FAFC2398852400D33F31 /* Contaxe.app */;
+			productReference = 68A7513A251FCF3800C5AD71 /* Contaxe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6880FAF42398852400D33F31 /* Project object */ = {
+		68A75132251FCF3800C5AD71 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = "Neas Lease";
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
 				TargetAttributes = {
-					6880FAFB2398852400D33F31 = {
-						CreatedOnToolsVersion = 11.2.1;
+					68A75139251FCF3800C5AD71 = {
+						CreatedOnToolsVersion = 12.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 6880FAF72398852400D33F31 /* Build configuration list for PBXProject "Contaxe" */;
+			buildConfigurationList = 68A75135251FCF3800C5AD71 /* Build configuration list for PBXProject "Contaxe" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -168,61 +161,48 @@
 				en,
 				Base,
 			);
-			mainGroup = 6880FAF32398852400D33F31;
-			productRefGroup = 6880FAFD2398852400D33F31 /* Products */;
+			mainGroup = 68A75131251FCF3800C5AD71;
+			productRefGroup = 68A7513B251FCF3800C5AD71 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6880FAFB2398852400D33F31 /* Contaxe */,
+				68A75139251FCF3800C5AD71 /* Contaxe */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6880FAFA2398852400D33F31 /* Resources */ = {
+		68A75138251FCF3800C5AD71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6880FB0C2398852500D33F31 /* LaunchScreen.storyboard in Resources */,
-				6880FB092398852500D33F31 /* Preview Assets.xcassets in Resources */,
-				6880FB062398852500D33F31 /* Assets.xcassets in Resources */,
+				68A75145251FCF3A00C5AD71 /* Preview Assets.xcassets in Resources */,
+				68A75142251FCF3A00C5AD71 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6880FAF82398852400D33F31 /* Sources */ = {
+		68A75136251FCF3800C5AD71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6880FB002398852400D33F31 /* AppDelegate.swift in Sources */,
-				6880FB022398852400D33F31 /* SceneDelegate.swift in Sources */,
-				6880FB1D239885D000D33F31 /* String.swift in Sources */,
-				6880FB042398852400D33F31 /* ContentView.swift in Sources */,
-				68EBFC9323A6D87700B6A643 /* ContactView.swift in Sources */,
-				6880FB1F239885E700D33F31 /* Color.swift in Sources */,
-				6880FB222398866600D33F31 /* PhoneContact.swift in Sources */,
-				68EBFC8E23A6D60900B6A643 /* ContactButton.swift in Sources */,
-				6880FB242398867C00D33F31 /* PhoneContacts.swift in Sources */,
+				68A7513E251FCF3800C5AD71 /* ContaxeApp.swift in Sources */,
+				68A75170251FD00C00C5AD71 /* Color.swift in Sources */,
+				68A7516F251FD00C00C5AD71 /* String.swift in Sources */,
+				68A75152251FCF7E00C5AD71 /* ContactButton.swift in Sources */,
+				68A75171251FD00C00C5AD71 /* PhoneContact.swift in Sources */,
+				68A75153251FCF7E00C5AD71 /* ContactView.swift in Sources */,
+				68A75151251FCF7E00C5AD71 /* ContentView.swift in Sources */,
+				68A7516E251FD00C00C5AD71 /* PhoneContacts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		6880FB0A2398852500D33F31 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6880FB0B2398852500D33F31 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		6880FB0E2398852500D33F31 /* Debug */ = {
+		68A75147251FCF3A00C5AD71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -248,6 +228,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -272,7 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -282,7 +263,7 @@
 			};
 			name = Debug;
 		};
-		6880FB0F2398852500D33F31 /* Release */ = {
+		68A75148251FCF3A00C5AD71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -308,6 +289,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -326,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -336,15 +318,17 @@
 			};
 			name = Release;
 		};
-		6880FB112398852500D33F31 /* Debug */ = {
+		68A7514A251FCF3B00C5AD71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Contaxe/Preview Content\"";
 				DEVELOPMENT_TEAM = 6G246VB5CG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Contaxe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,15 +340,17 @@
 			};
 			name = Debug;
 		};
-		6880FB122398852500D33F31 /* Release */ = {
+		68A7514B251FCF3B00C5AD71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Contaxe/Preview Content\"";
 				DEVELOPMENT_TEAM = 6G246VB5CG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Contaxe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,25 +365,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6880FAF72398852400D33F31 /* Build configuration list for PBXProject "Contaxe" */ = {
+		68A75135251FCF3800C5AD71 /* Build configuration list for PBXProject "Contaxe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6880FB0E2398852500D33F31 /* Debug */,
-				6880FB0F2398852500D33F31 /* Release */,
+				68A75147251FCF3A00C5AD71 /* Debug */,
+				68A75148251FCF3A00C5AD71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6880FB102398852500D33F31 /* Build configuration list for PBXNativeTarget "Contaxe" */ = {
+		68A75149251FCF3B00C5AD71 /* Build configuration list for PBXNativeTarget "Contaxe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6880FB112398852500D33F31 /* Debug */,
-				6880FB122398852500D33F31 /* Release */,
+				68A7514A251FCF3B00C5AD71 /* Debug */,
+				68A7514B251FCF3B00C5AD71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6880FAF42398852400D33F31 /* Project object */;
+	rootObject = 68A75132251FCF3800C5AD71 /* Project object */;
 }

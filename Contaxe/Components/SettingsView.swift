@@ -56,7 +56,7 @@ struct SettingsView: View {
 
                 if UIApplication.shared.canOpenURL(settingsUrl) {
                     UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        print("Settings opened: \(success)") // Prints true
+                        print("Settings opened: \(success)")
                     })
                 }
             } else if value == true {
@@ -83,6 +83,7 @@ struct SettingsView: View {
                         withAnimation {
                             self.presented = false
                         }
+                        notifications.setupNotifications(for: settings.timeOfDay, on: .daily)
                     }) {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 20, weight: .semibold))

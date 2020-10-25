@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct ContaxeApp: App {
-    let phoneContacts: [PhoneContact] = PhoneContacts().getContacts().compactMap { .init(contact: $0) }
+    let phoneContacts: PhoneContacts = PhoneContacts()
     
     var body: some Scene {
         WindowGroup {

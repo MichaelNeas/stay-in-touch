@@ -22,9 +22,18 @@ enum ContactContext: String {
     case email = "mailto:"
 }
 
-class PhoneContacts {
+class PhoneContacts: ObservableObject {
+    @Published var phoneContacts: [PhoneContact] = []
+    @Published var activeContact: PhoneContact = PhoneContact()
+    
+    let contactStore = CNContactStore()
+    
+    init() {
+        self.phoneContacts = self.getContacts().compactMap { PhoneContact(contact: $0) }
+        newActiveContact()
+    }
+    
     func getContacts(filter: ContactsFilter = .none) -> [CNContact] {
-        let contactStore = CNContactStore()
         let keysToFetch = [
             CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
             CNContactPhoneNumbersKey,
@@ -51,6 +60,22 @@ class PhoneContacts {
         }
         
         return results
+    }
+    
+    func newActiveContact() {
+        activeContact = phoneContacts.randomElement() ?? PhoneContact()
+    }
+    
+    func deleteContact() {
+        let request = CNSaveRequest()
+        let mutableContact = activeContact.contact.mutableCopy() as! CNMutableContact
+        request.delete(mutableContact)
+        do {
+            try contactStore.execute(request)
+            newActiveContact()
+        } catch {
+            print("Error deleting contact")
+        }
     }
     
     func contact(phoneNumber: String, context: ContactContext) {

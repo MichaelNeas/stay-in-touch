@@ -9,15 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    var phoneContacts = [PhoneContact]()
+    @ObservedObject var phoneContacts: PhoneContacts
     @ObservedObject var notifications = Notifications()
     @ObservedObject var settings = Settings()
-    @State var contact: PhoneContact
     @State var showSettings: Bool = false
     
-    init(contacts: [PhoneContact]) {
+    init(contacts: PhoneContacts) {
         self.phoneContacts = contacts
-        self._contact = .init(initialValue: contacts.randomElement() ?? PhoneContact())
     }
     
     var body: some View {
@@ -28,7 +26,7 @@ struct ContentView: View {
                 }.transition(.move(edge: .trailing)).animation(.easeOut)
             } else {
                 Group {
-                    ContactView(contact: $contact, connect: PhoneContacts())
+                    ContactView(connect: phoneContacts)
                     topBar
                 }
             }
@@ -38,15 +36,26 @@ struct ContentView: View {
     var topBar: some View {
         VStack {
             HStack {
-                Button(action: { self.contact = self.phoneContacts.randomElement() ?? PhoneContact() }) {
+                #if DEBUG
+                Button(action: {
+                    phoneContacts.newActiveContact()
+                }) {
                     Image(systemName: "arrow.clockwise.circle")
                         .font(.system(size: 36, weight: .thin))
                         .foregroundColor(.gray)
                 }
+                #endif
+                Button(action: {
+                    phoneContacts.deleteContact()
+                }) {
+                    Text("Delete")
+                        .font(.system(size: 30, weight: .bold))
+                        .foregroundColor(.red)
+                }
                 Spacer()
                 Button(action: {
                     withAnimation {
-                        self.showSettings = true
+                        showSettings = true
                     }
                 }) {
                     Image(systemName: "gear")

@@ -23,7 +23,7 @@ struct ContentView: View {
             if showSettings {
                 Group {
                     SettingsView(presented: $showSettings, notifications: notifications, settings: settings)
-                }.transition(.move(edge: .trailing)).animation(.easeOut)
+                }.transition(.move(edge: .trailing)).animation(.easeInOut, value: 1)
             } else {
                 Group {
                     ContactView(connect: phoneContacts)

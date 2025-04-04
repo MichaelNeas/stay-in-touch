@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import ContactsUI
+import Contacts
 
-class PhoneContact: NSObject {
+struct PhoneContact {
     let contact: CNContact
     
     var name: String {
@@ -20,8 +20,13 @@ class PhoneContact: NSObject {
         contact.thumbnailImageData
     }
     
-    var phoneNumber: [String] = [String]()
-    var email: [String] = [String]()
+    var phoneNumbers: [String] {
+        contact.phoneNumbers.map { $0.value.stringValue }
+    }
+    
+    var emails: [String] {
+        contact.emailAddresses.map { $0.value as String }
+    }
     
     var location: String {
         var location = ""
@@ -40,17 +45,14 @@ class PhoneContact: NSObject {
     
     init(contact: CNContact) {
         self.contact = contact
-        
-        for phone in contact.phoneNumbers {
-            phoneNumber.append(phone.value.stringValue)
-        }
-        for mail in contact.emailAddresses {
-            email.append(mail.value as String)
-        }
     }
     
-    override init() {
-        self.contact = CNContact()
-        super.init()
+    func formattedPhoneNumbers() -> String {
+        phoneNumbers.joined(separator: ", ")
+    }
+    
+    func formattedEmails() -> String {
+        emails.joined(separator: ", ")
     }
 }
+

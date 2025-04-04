@@ -9,12 +9,6 @@
 import Foundation
 import ContactsUI
 
-enum ContactsFilter {
-    case none
-    case mail
-    case message
-}
-
 enum ContactContext: String {
     case phone = "tel://"
     case facetime = "facetime://"
@@ -22,65 +16,55 @@ enum ContactContext: String {
     case email = "mailto:"
 }
 
-class PhoneContacts: ObservableObject {
-    @Published var phoneContacts: [PhoneContact] = []
-    @Published var activeContact: PhoneContact = PhoneContact()
+protocol ContactsServicing {
+    func requestAccess() async throws
+    func fetchContacts() async throws -> [PhoneContact]
+    func delete(contact: PhoneContact) throws
+}
+
+final class PhoneContactsService: ContactsServicing {
     
-    let contactStore = CNContactStore()
-    
-    init() {
-        self.phoneContacts = self.getContacts().compactMap { PhoneContact(contact: $0) }
-        newActiveContact()
-    }
-    
-    func getContacts(filter: ContactsFilter = .none) -> [CNContact] {
-        let keysToFetch = [
+    private let store = CNContactStore()
+
+    func fetchContacts() async throws -> [PhoneContact]{
+        let keysToFetch: [CNKeyDescriptor] = [
             CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
-            CNContactPhoneNumbersKey,
-            CNContactEmailAddressesKey,
-            CNContactPostalAddressesKey,
-            CNContactThumbnailImageDataKey] as [Any]
+            CNContactPhoneNumbersKey as CNKeyDescriptor,
+            CNContactEmailAddressesKey as CNKeyDescriptor,
+            CNContactPostalAddressesKey as CNKeyDescriptor,
+            CNContactThumbnailImageDataKey as CNKeyDescriptor
+        ]
         
-        var allContainers: [CNContainer] = []
-        do {
-            allContainers = try contactStore.containers(matching: nil)
-        } catch {
-            print("Error fetching containers")
+        let containers = try store.containers(matching: nil)
+        var contacts: [CNContact] = []
+        
+        for container in containers {
+            let predicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+            let containerContacts = try store.unifiedContacts(matching: predicate, keysToFetch: keysToFetch)
+            contacts.append(contentsOf: containerContacts)
         }
         
-        var results: [CNContact] = []
-        for container in allContainers {
-            let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
-            do {
-                let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
-                results.append(contentsOf: containerResults)
-            } catch {
-                print("Error fetching containers")
-            }
+        return contacts.compactMap(PhoneContact.init)
+    }
+    
+    func requestAccess() async throws {
+        let status = CNContactStore.authorizationStatus(for: .contacts)
+        if status == .notDetermined {
+            _ = try await store.requestAccess(for: .contacts)
         }
-        
-        return results
     }
     
-    func newActiveContact() {
-        activeContact = phoneContacts.randomElement() ?? PhoneContact()
-    }
     
-    func deleteContact() {
+    func delete(contact: PhoneContact) throws {
         let request = CNSaveRequest()
-        let mutableContact = activeContact.contact.mutableCopy() as! CNMutableContact
-        request.delete(mutableContact)
-        do {
-            try contactStore.execute(request)
-            newActiveContact()
-        } catch {
-            print("Error deleting contact")
-        }
+        let mutable = contact.contact.mutableCopy() as! CNMutableContact
+        request.delete(mutable)
+        try store.execute(request)
     }
     
     func contact(phoneNumber: String, context: ContactContext) {
         guard phoneNumber.isValid(regex: .phone) == true else { return }
-        var validNumber = phoneNumber.onlyDigits()
+        var validNumber = phoneNumber.onlyDigits
         if let first = validNumber.first, first != Character("1") {
             validNumber = validNumber.prepend("1")
         }

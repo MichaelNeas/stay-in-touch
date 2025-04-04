@@ -9,11 +9,13 @@ import SwiftUI
 
 @main
 struct ContaxeApp: App {
-    let phoneContacts: PhoneContacts = PhoneContacts()
-    
+    let contactService = PhoneContactsService()
+    let contactActionsService = ContactsActionsService()
+
     var body: some Scene {
         WindowGroup {
-            ContentView(contacts: phoneContacts)
+            ContentView()
+                .environmentObject(PhoneContactsViewModel(contactService: contactService, contactActionsService: contactActionsService))
         }
     }
 }

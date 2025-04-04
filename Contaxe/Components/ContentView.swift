@@ -9,61 +9,71 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var phoneContacts: PhoneContacts
     @ObservedObject var notifications = Notifications()
     @ObservedObject var settings = Settings()
     @State var showSettings: Bool = false
-    
-    init(contacts: PhoneContacts) {
-        self.phoneContacts = contacts
-    }
+    @State private var showDeleteConfirmation = false
+
+    @EnvironmentObject var phoneContactsViewModel: PhoneContactsViewModel
     
     var body: some View {
         ZStack {
             if showSettings {
-                Group {
-                    SettingsView(presented: $showSettings, notifications: notifications, settings: settings)
-                }.transition(.move(edge: .trailing)).animation(.easeInOut, value: 1)
+                SettingsView(presented: $showSettings, notifications: notifications, settings: settings)
+                    .transition(.move(edge: .trailing))
             } else {
-                Group {
-                    ContactView(connect: phoneContacts)
-                    topBar
-                }
+                ContactView()
+                topBar
             }
         }
+        .animation(.easeInOut, value: showSettings)
     }
-    
+
     var topBar: some View {
         VStack {
             HStack {
                 #if DEBUG
-                Button(action: {
-                    phoneContacts.newActiveContact()
-                }) {
-                    Image(systemName: "arrow.clockwise.circle")
-                        .font(.system(size: 36, weight: .thin))
-                        .foregroundColor(.gray)
-                }
+                TopBarButton(imageName: "arrow.clockwise.circle", action: {
+                    phoneContactsViewModel.newActiveContact()
+                }, color: .gray)
                 #endif
-                Button(action: {
-                    phoneContacts.deleteContact()
-                }) {
-                    Text("Delete")
-                        .font(.system(size: 30, weight: .bold))
-                        .foregroundColor(.red)
-                }
+
+                TopBarButton(imageName: "trash", action: {
+                    showDeleteConfirmation = true
+                }, color: .red)
+
                 Spacer()
-                Button(action: {
-                    withAnimation {
-                        showSettings = true
-                    }
-                }) {
-                    Image(systemName: "gear")
-                        .font(.system(size: 36, weight: .thin))
-                        .foregroundColor(.gray)
-                }
-            }.padding()
+
+                TopBarButton(imageName: "gear", action: {
+                    withAnimation { showSettings = true }
+                }, color: .gray)
+            }
+            .padding()
             Spacer()
+        }
+        .alert(isPresented: $showDeleteConfirmation) {
+            Alert(
+                title: Text("Are you sure?"),
+                message: Text("This will permanently delete the contact."),
+                primaryButton: .destructive(Text("Delete")) {
+                    phoneContactsViewModel.deleteContact()
+                },
+                secondaryButton: .cancel()
+            )
+        }
+    }
+}
+
+struct TopBarButton: View {
+    let imageName: String
+    let action: () -> Void
+    let color: Color
+    
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: imageName)
+                .font(.system(size: 36, weight: .thin))
+                .foregroundColor(color)
         }
     }
 }

@@ -8,26 +8,23 @@
 
 import Foundation
 
-public extension String {
-    enum RegularExpressions: String {
-        case phone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$"
+enum RegexPattern: String {
+    case phone = "^\\s*(?:\\+?(\\d{1,3}))?([-. (]*(\\d{3})[-. )]*)?((\\d{3})[-. ]*(\\d{2,4})(?:[-.x ]*(\\d+))?)\\s*$"
+    case email = #"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$"#
+}
+
+extension String {
+
+    func isValid(regex: RegexPattern) -> Bool {
+        let predicate = NSPredicate(format: "SELF MATCHES[c] %@", regex.rawValue)
+        return predicate.evaluate(with: self)
     }
-    
-    func isValid(regex: RegularExpressions) -> Bool {
-        return isValid(regex: regex.rawValue)
+
+    var onlyDigits: String {
+        self.filter(\.isNumber)
     }
-    
-    func isValid(regex: String) -> Bool {
-        let matches = range(of: regex, options: .regularExpression)
-        return matches != nil
-    }
-    
-    func onlyDigits() -> String {
-        let filtredUnicodeScalars = unicodeScalars.filter{CharacterSet.decimalDigits.contains($0)}
-        return String(String.UnicodeScalarView(filtredUnicodeScalars))
-    }
-    
-    func prepend(_ value: String) -> String {
-        return value + self
+
+    func prepend(_ string: String) -> String {
+        string + self
     }
 }

@@ -7,25 +7,26 @@
 //
 
 import SwiftUI
-
 struct ContactView: View {
-    @ObservedObject var connect: PhoneContacts
+    @EnvironmentObject var phoneContactsViewModel: PhoneContactsViewModel
     
-    func avatar() -> AnyView {
-        if let avatar = connect.activeContact.avatarData, let avatarImage = UIImage(data: avatar) {
-            return AnyView(Image(uiImage: avatarImage)
-                .resizable()
-                .aspectRatio(1.0, contentMode: .fill)
-                .frame(width: 200, height: 200, alignment: .top)
-                .clipped()
+    func avatar() -> some View {
+        if let avatar = phoneContactsViewModel.activeContact.avatarData, let avatarImage = UIImage(data: avatar) {
+            return AnyView(
+                Image(uiImage: avatarImage)
+                    .resizable()
+                    .aspectRatio(1.0, contentMode: .fill)
+                    .frame(width: 200, height: 200, alignment: .top)
+                    .clipped()
             )
         } else {
-            return AnyView(Text(connect.activeContact.initials)
-                .font(Font.system(size: 60, design: .default))
-                .fontWeight(.bold)
-                .padding(80.0)
-                .background(Color.gray)
-                .foregroundColor(.white)
+            return AnyView(
+                Text(phoneContactsViewModel.activeContact.initials)
+                    .font(.system(size: 60, design: .default))
+                    .fontWeight(.bold)
+                    .padding(80.0)
+                    .background(Color.gray)
+                    .foregroundColor(.white)
             )
         }
     }
@@ -40,12 +41,12 @@ struct ContactView: View {
             Spacer()
             
             VStack {
-                Text(connect.activeContact.name)
+                Text(phoneContactsViewModel.activeContact.name)
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                if !connect.activeContact.location.isEmpty {
-                    Text(connect.activeContact.location)
+                if !phoneContactsViewModel.activeContact.location.isEmpty {
+                    Text(phoneContactsViewModel.activeContact.location)
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                 }
@@ -58,60 +59,44 @@ struct ContactView: View {
         .padding()
         .background(LinearGradient(gradient: Gradient(colors: [.darkPurple, .cyan]), startPoint: .topLeading, endPoint: .bottomTrailing))
         .edgesIgnoringSafeArea(.all)
-        
     }
     
     var contactMethods: some View {
-        if !connect.activeContact.email.isEmpty && connect.activeContact.phoneNumber.isEmpty {
-            return AnyView(VStack {
-                Spacer()
-                HStack {
+
+            if !phoneContactsViewModel.activeContact.emails.isEmpty && phoneContactsViewModel.activeContact.phoneNumbers.isEmpty {
+                
+                AnyView(VStack {
                     Spacer()
-                    ContactButton(systemImage: "envelope", tapHandler: email)
-                    Spacer()
-                }
-                Spacer()
-            })
-        } else {
-            return AnyView(VStack {
-                HStack {
-                    Spacer()
-                    ContactButton(systemImage: "message", tapHandler: text)
-                    Spacer()
-                    ContactButton(systemImage: "phone", tapHandler: call)
-                    Spacer()
-                }.padding()
-                HStack {
-                    if !connect.activeContact.email.isEmpty {
+                    HStack {
                         Spacer()
-                        ContactButton(systemImage: "envelope", tapHandler: email)
+                        ContactButton(systemImage: "envelope", tapHandler: phoneContactsViewModel.email)
+                        Spacer()
                     }
                     Spacer()
-                    ContactButton(systemImage: "video", tapHandler: faceTime)
-                    Spacer()
-                }.padding()
-            })
+                })
+            } else {
+                // Show all contact options (message, phone, email, and FaceTime)
+                AnyView(VStack {
+                    HStack {
+                        Spacer()
+                        ContactButton(systemImage: "message", tapHandler: phoneContactsViewModel.text)
+                        Spacer()
+                        ContactButton(systemImage: "phone", tapHandler: phoneContactsViewModel.call)
+                        Spacer()
+                    }.padding()
+                    HStack {
+                        if let firstEmail = phoneContactsViewModel.activeContact.emails.first, !firstEmail.isEmpty {
+                            Spacer()
+                            ContactButton(systemImage: "envelope", tapHandler: phoneContactsViewModel.email)
+                        }
+                        Spacer()
+                        if !phoneContactsViewModel.activeContact.phoneNumbers.isEmpty {
+                            ContactButton(systemImage: "video", tapHandler: phoneContactsViewModel.faceTime)
+                        }
+                        Spacer()
+                    }.padding()
+                })
+            }
         }
-    }
     
-    func text() {
-        guard let firstNumber = connect.activeContact.phoneNumber.first else { print("No number"); return }
-        connect.contact(phoneNumber: firstNumber, context: .sms)
-    }
-    
-    func call() {
-        // in simulator, this will not work, you need to test in device. The simulator doesn't have carrier service.
-        guard let firstNumber = connect.activeContact.phoneNumber.first else { print("No number"); return }
-        connect.contact(phoneNumber: firstNumber, context: .phone)
-    }
-    
-    func email() {
-        guard let firstEmail = connect.activeContact.email.first else { print("No email"); return }
-        connect.contact(phoneNumber: firstEmail, context: .email)
-    }
-    
-    func faceTime() {
-        guard let firstNumber = connect.activeContact.phoneNumber.first else { print("No number"); return }
-        connect.contact(phoneNumber: firstNumber, context: .facetime)
-    }
 }

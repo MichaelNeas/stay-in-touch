@@ -1,102 +1,139 @@
-//
-//  ContactView.swift
-//  Contaxe
-//
-//  Created by Michael Neas on 12/15/19.
-//  Copyright © 2019 Neas Lease. All rights reserved.
-//
-
 import SwiftUI
-struct ContactView: View {
-    @EnvironmentObject var phoneContactsViewModel: PhoneContactsViewModel
-    
-    func avatar() -> some View {
-        if let avatar = phoneContactsViewModel.activeContact.avatarData, let avatarImage = UIImage(data: avatar) {
-            return AnyView(
-                Image(uiImage: avatarImage)
-                    .resizable()
-                    .aspectRatio(1.0, contentMode: .fill)
-                    .frame(width: 200, height: 200, alignment: .top)
-                    .clipped()
-            )
-        } else {
-            return AnyView(
-                Text(phoneContactsViewModel.activeContact.initials)
-                    .font(.system(size: 60, design: .default))
-                    .fontWeight(.bold)
-                    .padding(80.0)
-                    .background(Color.gray)
-                    .foregroundColor(.white)
-            )
-        }
-    }
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            avatar()
-                .clipShape(Circle())
-                .padding(.top, 50.0)
-            
-            Spacer()
-            
-            VStack {
-                Text(phoneContactsViewModel.activeContact.name)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                if !phoneContactsViewModel.activeContact.location.isEmpty {
-                    Text(phoneContactsViewModel.activeContact.location)
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                }
-            }.padding()
-            
-            Spacer()
-            contactMethods
-            Spacer()
-        }
-        .padding()
-        .background(LinearGradient(gradient: Gradient(colors: [.darkPurple, .cyan]), startPoint: .topLeading, endPoint: .bottomTrailing))
-        .edgesIgnoringSafeArea(.all)
-    }
-    
-    var contactMethods: some View {
 
-            if !phoneContactsViewModel.activeContact.emails.isEmpty && phoneContactsViewModel.activeContact.phoneNumbers.isEmpty {
-                
-                AnyView(VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        ContactButton(systemImage: "envelope", tapHandler: phoneContactsViewModel.email)
-                        Spacer()
+struct ContactView: View {
+    let contact: PhoneContact
+    var onText: (() -> Void)?
+    var onCall: (() -> Void)?
+    var onEmail: (() -> Void)?
+    var onFaceTime: (() -> Void)?
+    var onDelete: (() -> Void)?
+
+    @State private var showDeleteConfirmation = false
+
+    var body: some View {
+        ZStack {
+            LinearGradient(
+                colors: [.darkPurple, .appCyan],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            VStack {
+                Spacer()
+
+                avatarView
+                    .clipShape(Circle())
+                    .shadow(color: .black.opacity(0.3), radius: 20, y: 10)
+                    .padding(.top, 60)
+                    .accessibilityHidden(true)
+
+                Spacer()
+
+                VStack(spacing: 6) {
+                    Text(contact.name)
+                        .font(.largeTitle.bold())
+                        .foregroundStyle(.white)
+
+                    if !contact.location.isEmpty {
+                        Label(contact.location, systemImage: "mappin.and.ellipse")
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.85))
                     }
-                    Spacer()
-                })
-            } else {
-                // Show all contact options (message, phone, email, and FaceTime)
-                AnyView(VStack {
-                    HStack {
-                        Spacer()
-                        ContactButton(systemImage: "message", tapHandler: phoneContactsViewModel.text)
-                        Spacer()
-                        ContactButton(systemImage: "phone", tapHandler: phoneContactsViewModel.call)
-                        Spacer()
-                    }.padding()
-                    HStack {
-                        if let firstEmail = phoneContactsViewModel.activeContact.emails.first, !firstEmail.isEmpty {
-                            Spacer()
-                            ContactButton(systemImage: "envelope", tapHandler: phoneContactsViewModel.email)
-                        }
-                        Spacer()
-                        if !phoneContactsViewModel.activeContact.phoneNumbers.isEmpty {
-                            ContactButton(systemImage: "video", tapHandler: phoneContactsViewModel.faceTime)
-                        }
-                        Spacer()
-                    }.padding()
-                })
+                }
+                .padding()
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(contact.location.isEmpty
+                    ? contact.name
+                    : "\(contact.name), \(contact.location)"
+                )
+
+                Spacer()
+
+                VStack(spacing: 20) {
+                    contactButtons
+                    deleteButton
+                }
+                .padding(.bottom, 60)
+
+                Spacer()
             }
         }
-    
+        .alert("Axe \(contact.name)?", isPresented: $showDeleteConfirmation) {
+            Button("Axe", role: .destructive) { onDelete?() }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will permanently delete \(contact.name) from your phone.")
+        }
+    }
+
+    @ViewBuilder
+    private var avatarView: some View {
+        if let data = contact.avatarData, let image = UIImage(data: data) {
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 180, height: 180)
+                .clipped()
+        } else {
+            Text(contact.initials)
+                .font(.system(size: 64, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .frame(width: 180, height: 180)
+                .background(.white.opacity(0.2))
+        }
+    }
+
+    @ViewBuilder
+    private var contactButtons: some View {
+        let hasPhone = !contact.phoneNumbers.isEmpty
+        let hasEmail = !contact.emails.isEmpty
+
+        if hasPhone {
+            HStack(spacing: 24) {
+                ContactButton(
+                    systemImage: "message.fill", label: "Text",
+                    accessibilityLabel: "Text \(contact.name)",
+                    tapHandler: onText
+                )
+                ContactButton(
+                    systemImage: "phone.fill", label: "Call",
+                    accessibilityLabel: "Call \(contact.name)",
+                    tapHandler: onCall
+                )
+                if hasEmail {
+                    ContactButton(
+                        systemImage: "envelope.fill", label: "Email",
+                        accessibilityLabel: "Email \(contact.name)",
+                        tapHandler: onEmail
+                    )
+                }
+                ContactButton(
+                    systemImage: "video.fill", label: "FaceTime",
+                    accessibilityLabel: "FaceTime \(contact.name)",
+                    tapHandler: onFaceTime
+                )
+            }
+        } else if hasEmail {
+            ContactButton(
+                systemImage: "envelope.fill", label: "Email",
+                accessibilityLabel: "Email \(contact.name)",
+                tapHandler: onEmail
+            )
+        }
+    }
+
+    private var deleteButton: some View {
+        Button(action: { showDeleteConfirmation = true }) {
+            Label("Axe Contact", systemImage: "person.crop.circle.badge.xmark")
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(Color(red: 1, green: 0.55, blue: 0.55))
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
+                .background(.ultraThinMaterial)
+                .clipShape(Capsule())
+        }
+        .accessibilityLabel("Axe \(contact.name)")
+        .accessibilityHint("Permanently deletes this contact from your phone")
+    }
 }

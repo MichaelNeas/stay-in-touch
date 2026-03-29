@@ -1,76 +1,62 @@
-//
-//  Notifications.swift
-//  Contaxe
-//
-//  Created by Michael Neas on 9/26/20.
-//
-
 import Foundation
 import UserNotifications
+import Observation
 
-class Notifications: ObservableObject {
-    @Published var authorizationStatus: UNAuthorizationStatus = UNAuthorizationStatus.notDetermined
-    
+@Observable
+@MainActor
+final class Notifications {
+    var authorizationStatus: UNAuthorizationStatus = .notDetermined
+
     var hasPermission: Bool {
-        ![.denied, .notDetermined].contains(authorizationStatus)
+        authorizationStatus == .authorized || authorizationStatus == .provisional
     }
-    
-    let notificationCenter = UNUserNotificationCenter.current()
-    
+
+    private let center = UNUserNotificationCenter.current()
+
     init() {
-        checkAuthorizationStatus()
+        Task { await refreshStatus() }
     }
-    
-    func removeNotifications() {
-        notificationCenter.removeAllPendingNotificationRequests()
+
+    func refreshStatus() async {
+        let settings = await center.notificationSettings()
+        authorizationStatus = settings.authorizationStatus
     }
-    
-    
-    func registerLocal() {
-        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-                print("Yay!")
-            } else {
-                print("D'oh")
-            }
+
+    func requestAuthorization() async -> Bool {
+        do {
+            let granted = try await center.requestAuthorization(options: [.alert, .badge, .sound])
+            await refreshStatus()
+            return granted
+        } catch {
+            print("Notification authorization error: \(error)")
+            return false
         }
     }
-    
-    func checkAuthorizationStatus() {
-        notificationCenter.getNotificationSettings(completionHandler: { settings in
-            self.authorizationStatus = settings.authorizationStatus
-        })
+
+    func removeAll() {
+        center.removeAllPendingNotificationRequests()
     }
-    
-    func setupNotifications(for date: Date, on interval: Frequency) {
+
+    func schedule(for time: Date, frequency: Frequency, weekday: Int? = nil) {
+        removeAll()
+        guard hasPermission else { return }
+
         let content = UNMutableNotificationContent()
-        content.title = "New contact today!"
-        //content.body = "Every Tuesday at 2pm"
-//        content.subtitle = "It looks hungry"
-//        content.sound = UNNotificationSound.default
-        
-        // Configure the recurring date.
-        var dateComponents = DateComponents()
-        let calendar = Calendar.current
-        dateComponents.calendar = Calendar.current
+        content.title = "Stay in Touch"
+        content.body = "Connect with someone you care about."
+        content.sound = .default
 
-        
-        dateComponents.hour = calendar.component(.hour, from: date)
-        dateComponents.minute = calendar.component(.minute, from: date)
-           
-        // Create the trigger as a repeating event.
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
-        // Create the request
-        let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        var components = Calendar.current.dateComponents([.hour, .minute], from: time)
 
-        // Schedule the request with the system.
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request) { (error) in
-           if error != nil {
-              // Handle any errors.
-           }
+        if frequency == .weekly {
+            components.weekday = weekday ?? Calendar.current.component(.weekday, from: Date())
+        }
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        let request = UNNotificationRequest(identifier: "stay-in-touch-reminder", content: content, trigger: trigger)
+
+        center.add(request) { error in
+            if let error { print("Failed to schedule notification: \(error)") }
         }
     }
 }

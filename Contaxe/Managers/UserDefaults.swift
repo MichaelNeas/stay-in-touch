@@ -1,46 +1,35 @@
-//
-//  UserDefaults.swift
-//  Contaxe
-//
-//  Created by Michael Neas on 9/26/20.
-//
-
 import Foundation
+import Observation
 
-class Settings: ObservableObject {
-    enum Keys: String {
-        case frequency
-        case notifications
-        case time
-        case random
+@Observable
+final class Settings {
+    private enum Keys: String {
+        case frequency, notifications, time, weekday
     }
-    
-    @Published var wantsNotifications: Bool {
-        didSet {
-            UserDefaults.standard.set(wantsNotifications, forKey: Keys.notifications.rawValue)
-        }
+
+    var wantsNotifications: Bool {
+        didSet { UserDefaults.standard.set(wantsNotifications, forKey: Keys.notifications.rawValue) }
     }
-    
-    @Published var selectedFrequency: Frequency {
-        didSet {
-            UserDefaults.standard.set(selectedFrequency.rawValue, forKey: Keys.frequency.rawValue)
-        }
+
+    var selectedFrequency: Frequency {
+        didSet { UserDefaults.standard.set(selectedFrequency.rawValue, forKey: Keys.frequency.rawValue) }
     }
-    @Published var timeOfDay: Date {
-        didSet {
-            UserDefaults.standard.set(timeOfDay, forKey: Keys.time.rawValue)
-        }
+
+    var timeOfDay: Date {
+        didSet { UserDefaults.standard.set(timeOfDay, forKey: Keys.time.rawValue) }
     }
-    @Published var randomMode: Bool {
-        didSet {
-            UserDefaults.standard.set(randomMode, forKey: Keys.random.rawValue)
-        }
+
+    // Calendar weekday: 1 = Sunday … 7 = Saturday. Default: Monday (2).
+    var notificationWeekday: Int {
+        didSet { UserDefaults.standard.set(notificationWeekday, forKey: Keys.weekday.rawValue) }
     }
-    
+
     init() {
-        selectedFrequency = Frequency(rawValue: UserDefaults.standard.string(forKey: Keys.frequency.rawValue) ?? Frequency.daily.rawValue) ?? .daily
+        let rawFrequency = UserDefaults.standard.string(forKey: Keys.frequency.rawValue) ?? ""
+        selectedFrequency = Frequency(rawValue: rawFrequency) ?? .daily
         wantsNotifications = UserDefaults.standard.bool(forKey: Keys.notifications.rawValue)
         timeOfDay = UserDefaults.standard.object(forKey: Keys.time.rawValue) as? Date ?? Date()
-        randomMode = UserDefaults.standard.bool(forKey: Keys.random.rawValue)
+        let savedWeekday = UserDefaults.standard.integer(forKey: Keys.weekday.rawValue)
+        notificationWeekday = savedWeekday == 0 ? 2 : savedWeekday // 0 means not set; default Monday
     }
 }

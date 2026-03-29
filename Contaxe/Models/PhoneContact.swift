@@ -1,58 +1,37 @@
-//
-//  PhoneContact.swift
-//  Contaxe
-//
-//  Created by Michael Neas on 12/4/19.
-//  Copyright © 2019 Neas Lease. All rights reserved.
-//
-
 import Foundation
 import Contacts
 
-struct PhoneContact {
+struct PhoneContact: Identifiable {
     let contact: CNContact
-    
+
+    var id: String { contact.identifier }
+
     var name: String {
-        contact.givenName + " " + contact.familyName
+        CNContactFormatter.string(from: contact, style: .fullName) ?? "\(contact.givenName) \(contact.familyName)".trimmingCharacters(in: .whitespaces)
     }
 
-    var avatarData: Data? {
-        contact.thumbnailImageData
-    }
-    
+    var avatarData: Data? { contact.thumbnailImageData }
+
     var phoneNumbers: [String] {
         contact.phoneNumbers.map { $0.value.stringValue }
     }
-    
+
     var emails: [String] {
         contact.emailAddresses.map { $0.value as String }
     }
-    
-    var location: String {
-        var location = ""
-        if let city = contact.postalAddresses.first?.value.city {
-            location = city
-        }
-        if let state = contact.postalAddresses.first?.value.state {
-            location += location.isEmpty ? state : ", \(state)"
-        }
-        return location
-    }
-    
-    var initials: String {
-        "\(contact.givenName.prefix(1) + contact.familyName.prefix(1))"
-    }
-    
-    init(contact: CNContact) {
-        self.contact = contact
-    }
-    
-    func formattedPhoneNumbers() -> String {
-        phoneNumbers.joined(separator: ", ")
-    }
-    
-    func formattedEmails() -> String {
-        emails.joined(separator: ", ")
-    }
-}
 
+    var location: String {
+        guard let address = contact.postalAddresses.first?.value else { return "" }
+        let parts = [address.city, address.state].filter { !$0.isEmpty }
+        return parts.joined(separator: ", ")
+    }
+
+    var initials: String {
+        let first = contact.givenName.first.map(String.init) ?? ""
+        let last = contact.familyName.first.map(String.init) ?? ""
+        let result = first + last
+        return result.isEmpty ? "?" : result
+    }
+
+    var isEmpty: Bool { name.isEmpty }
+}

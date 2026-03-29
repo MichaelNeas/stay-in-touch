@@ -1,34 +1,35 @@
-//
-//  ContactButton.swift
-//  Contaxe
-//
-//  Created by Michael Neas on 12/15/19.
-//  Copyright © 2019 Neas Lease. All rights reserved.
-//
-
 import SwiftUI
 
 struct ContactButton: View {
-    var systemImage: String
-    var tapHandler: (() -> ())?
-    
+    let systemImage: String
+    let label: String
+    var accessibilityLabel: String? = nil
+    var tapHandler: (() -> Void)?
+
     var body: some View {
-        Button(action: {
-            self.tapHandler?()
-        }) {
-            Image(systemName: systemImage)
-                .font(.largeTitle)
-                .foregroundColor(.white)
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding(36.0)
-                .overlay(Circle().stroke(Color.white, lineWidth: 2))
+        Button(action: { tapHandler?() }) {
+            VStack(spacing: 8) {
+                Image(systemName: systemImage)
+                    .font(.system(size: 22, weight: .medium))
+                    .foregroundStyle(.white)
+                    .frame(width: 60, height: 60)
+                    .overlay(Circle().stroke(Color.white.opacity(0.8), lineWidth: 1.5))
+                Text(label)
+                    .font(.caption2.weight(.medium))
+                    .foregroundStyle(.white.opacity(0.85))
+            }
         }
+        .accessibilityLabel(accessibilityLabel ?? label)
     }
 }
 
-struct ContactButton_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactButton(systemImage: "message").background(Color.black)
+#Preview {
+    HStack(spacing: 24) {
+        ContactButton(systemImage: "message.fill", label: "Text")
+        ContactButton(systemImage: "phone.fill", label: "Call")
+        ContactButton(systemImage: "envelope.fill", label: "Email")
+        ContactButton(systemImage: "video.fill", label: "FaceTime")
     }
+    .padding()
+    .background(Color.darkPurple)
 }
-
